@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-public static class UserController {
+public class UserController {
 
     private final UserRepository userRepository;
 
@@ -16,26 +16,22 @@ public static class UserController {
         this.userRepository = userRepository;
     }
 
-    // GET /api/users
     @GetMapping
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    // GET /api/users/{id}
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec id " + id));
     }
 
-    // POST /api/users
     @PostMapping
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
-    // PUT /api/users/{id}
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
         User user = userRepository.findById(id)
@@ -45,7 +41,6 @@ public static class UserController {
         return userRepository.save(user);
     }
 
-    // DELETE /api/users/{id}
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);
