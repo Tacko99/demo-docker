@@ -79,9 +79,9 @@ public class DemoApplication {
 
         @Override
         public void run(String... args) throws Exception {
-            userRepository.save(new User("Alice", "alice@example.com"));
-            userRepository.save(new User("Bob", "bob@example.com"));
-            userRepository.save(new User("Charlie", "charlie@example.com"));
+            userRepository.save(new User("Tacko", "tacko@example.com"));
+            userRepository.save(new User("Boye", "boye@example.com"));
+            userRepository.save(new User("Coumbis", "coumbis@example.com"));
         }
     }
 
