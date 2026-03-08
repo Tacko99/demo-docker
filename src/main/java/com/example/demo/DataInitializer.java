@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DataInitializer implements CommandLineRunner {
+public static class DataInitializer implements CommandLineRunner {
 
     private final UserRepository userRepository;
 
