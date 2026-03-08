@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+
+mysql:
+image: mysql:8.0
+container_name: mysql-docker-demo
+environment:
+MYSQL_ROOT_PASSWORD: rootpassword
+MYSQL_DATABASE: docker_demo_db
+MYSQL_USER: dockeruser
+MYSQL_PASSWORD: dockerpassword
+ports:
+- "3307:3306"
+volumes:
+- mysql_data:/var/lib/mysql
+healthcheck:
+test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-
+prootpassword"]
+interval: 10s
+timeout: 5s
+retries: 5
+networks:
+- docker-demo-network
+app:
+build:
+context: .
+dockerfile: Dockerfile
+container_name: springboot-docker-demo
+ports:
+- "8080:8080"
+environment:
+SPRING_PROFILES_ACTIVE: docker
+SPRING_DATASOURCE_URL: jdbc:mysql://mysql-docker-demo:3306/docker_demo_db?
+createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=t
+SPRING_DATASOURCE_USERNAME: root
+SPRING_DATASOURCE_PASSWORD: rootpassword
+depends_on:
+mysql:
+condition: service_healthy
+networks:
+- docker-demo-network
+restart: unless-stopped
+networks:
+docker-demo-network:
+driver: bridge
+volumes:
+mysql_data:
