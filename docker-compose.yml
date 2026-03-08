@@ -1,6 +1,7 @@
 version: '3.8'
 services:
 
+
 mysql:
 image: mysql:8.0
 container_name: mysql-docker-demo
@@ -45,3 +46,4 @@ docker-demo-network:
 driver: bridge
 volumes:
 mysql_data:
+
