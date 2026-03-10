@@ -27,7 +27,7 @@ services:
       dockerfile: Dockerfile
     container_name: springboot-docker-demo
     ports:
-      - "9090:8080"  # port hôte:port conteneur
+      - "80800:8080"  # port hôte
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -52,3 +52,4 @@ networks:
 
 volumes:
   mysql_data:
+
