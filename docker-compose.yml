@@ -5,10 +5,10 @@ services:
     image: mysql:8.0
     container_name: mysql-docker-demo
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: docker_demo_db
-      MYSQL_USER: dockeruser
-      MYSQL_PASSWORD: dockerpassword
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3307:3306"
     volumes:
@@ -46,4 +46,5 @@ networks:
 
 volumes:
   mysql_data:
+
 
